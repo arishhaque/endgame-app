@@ -22,8 +22,10 @@ Play: Guess the word and in limited attempts.
 yarn install
 
 
-Start the dev server and open the app at http://localhost:5173:
+## Start the dev server and open the app:
 yarn dev
+
+http://localhost:5173
 
 ## Build a production bundle:
 
