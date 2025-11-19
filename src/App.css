@@ -5,9 +5,15 @@
   color: wheat;
 }
 
+body {
+  background-color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 header {
   margin: 0;
-  width: 100%;
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -16,9 +22,93 @@ header {
   font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
   background-color: #2b0505;
   color: white;
+  width: 2000px;
 }
 
 main {
   margin: 0 auto;
   padding: 2rem;
+}
+
+.game-result-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0;
+}
+.game-result-ele {
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-top: 20px;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  color: white;
+  max-width: 200px;
+}
+
+.languages-section {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.language-chips {
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.language-chips.lost {
+  opacity: 0.3;
+}
+
+.entered-words-section {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #0c0c0c;
+}
+
+.keypad-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.keypad-button {
+  margin: 10px;
+  padding: 20px;
+  font-size: 1.5rem;
+  gap: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.new-game-section {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.new-game-button {
+  margin-top: 20px;
+  max-width: 200px;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  background-color: #5236f4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }

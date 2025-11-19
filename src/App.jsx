@@ -1,13 +1,16 @@
 import Header from './components/Header'
+import Main from './components/Main'
 import './App.css'
 
+
 function App() {
+
+  const totalAttempts = 10;
+
   return (
     <>
-      <Header />
-      <main>
-        {/* Your content goes here */}
-      </main>
+      <Header totalAttempts={totalAttempts}/>
+      <Main totalAttempts={totalAttempts}/>
     </>
   )
 }
