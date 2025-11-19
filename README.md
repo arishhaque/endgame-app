@@ -1,4 +1,4 @@
-# Tenzies — React + Vite
+# Endgame — React + Vite
 
 An End game app built with React, Vite and Yarn.
 
