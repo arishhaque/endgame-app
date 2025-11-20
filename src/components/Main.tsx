@@ -3,13 +3,16 @@ import { nanoid } from 'nanoid';
 import { useState, useEffect } from 'react';
 import { languages } from "../assets/languages"
 import { clsx } from "clsx"
+import { getWordFromLlama } from "../llama.ts"
 
 export function Main(props: any) {
   // static variables
   const totalAttempts = props.totalAttempts;
-  const word = ['B', 'A', 'N', 'E', 'S', 'O', 'M', 'T'];
 
+  //const word = "HARMONIC"
   // state variables
+  const [word, setWord] = useState<string>('');
+  const [wordFetched, setWordFetched] = useState(false);
   const [keypad, setKeypad] = useState(() => generateAllNewKeypad()); // lazy initialization
   const [clickCount, setClickCount] = useState(0);
 
@@ -18,6 +21,18 @@ export function Main(props: any) {
   const wrongClickCount = clickCount - correctClickCount;
   const gameWon = correctClickCount === word.length;
   const gameOver = gameWon || wrongClickCount >= totalAttempts;
+
+  console.log("w:", word);
+
+  useEffect(() => {
+    if (!wordFetched) {
+      getWordFromLlama().then((newWord) => {
+        setWord(newWord);
+        enableKeypad();
+        setWordFetched(true);
+      })
+    }
+  }, [wordFetched])
 
   useEffect(() => {
     if (gameOver) {
@@ -35,6 +50,14 @@ export function Main(props: any) {
     }));
   }
 
+  function enableKeypad() {
+    setKeypad((prev) => prev.map(keyItem => (
+      { ...keyItem,
+        isDisabled: false
+      }
+    )));
+  }
+
   function disableKeypad() {
     setKeypad((prev) => prev.map(keyItem => (
       { ...keyItem,
@@ -46,6 +69,7 @@ export function Main(props: any) {
   function resetGame() {
     setClickCount(0);
     setKeypad(generateAllNewKeypad());
+    setWordFetched(false);
   }
 
   function getCorrectClickCount() {
@@ -54,14 +78,14 @@ export function Main(props: any) {
 
   function handleClick(id: string) {
     setClickCount((prev) => prev + 1);
-    setKeypad((prev) => prev.map(item => item.id === id ? { ...item, isSelected: true, isCorrect: word.includes(item.value), isDisabled: true } : item ));
+    setKeypad((prev) => prev.map(item => item.id === id ? { ...item, isSelected: true, isCorrect: word.split("").some((ch) => ch === item.value), isDisabled: true } : item ));
   }
 
   function isEnteredLetterCorrect(w: string) {
     return keypad.filter((keyItem) => keyItem.value === w && keyItem.isSelected === true && keyItem.isCorrect === true).length > 0
   }
 
-  const enteredCorrectWords = word.map((w) => {
+  const enteredCorrectWords = word.split("").map((w) => {
     const styles = {
       height: 40,
       width: 40,

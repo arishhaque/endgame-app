@@ -1,4 +1,4 @@
-# Endgame — React + Vite
+# Endgame with llama
 
 An End game app built with React, Vite and Yarn.
 
@@ -14,11 +14,22 @@ Play: Guess the word and in limited attempts.
 
 ## Prerequisites
 
+- llama3.2 (ollama.com)
 - Node.js (LTS recommended)
 - Yarn (project uses Yarn)
 
+## Install Llama
+- Go to (ollama.com) to download Ollama. Run the downloaded file to begin the installation and follow the on-screen prompts
+- verify
 
-## Install dependencies:
+$ ollama -v
+$ ollama serve
+
+http://127.0.0.1:11434/
+Ollama is running
+
+
+## Install REACT dependencies:
 yarn install
 
 
@@ -32,4 +43,4 @@ http://localhost:5173
 yarn build
 
 ## Gameplay / Controls
-Click the keypad and go!
+Click the keypad and guess the word!
