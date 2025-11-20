@@ -23,6 +23,7 @@ Play: Guess the word and in limited attempts.
 - verify
 
 $ ollama -v
+
 $ ollama serve
 
 http://127.0.0.1:11434/
